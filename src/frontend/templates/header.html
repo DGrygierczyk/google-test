@@ -19,6 +19,15 @@
 <html lang="en">
 
 <head>
+  <script>
+    function updateCounter() {
+      fetch('http://localhost:8081/increment')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('counter').textContent = data;
+        });
+    }
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -44,7 +53,7 @@
     {{ end }}
 </head>
 
-<body>
+<body onload="updateCounter()">
     <header>
         {{ if $.frontendMessage }}
         <div class="navbar">
@@ -56,7 +65,8 @@
         <div class="navbar sub-navbar">
             <div class="container d-flex justify-content-between">
                 <a href="/" class="navbar-brand d-flex align-items-center">
-                    {{ if $.is_cymbal_brand }}
+                  current visitor count: <div id="counter"></div>
+                  {{ if $.is_cymbal_brand }}
                     <img src="/static/icons/Cymbal_NavLogo.svg" alt="" class="top-left-logo-cymbal" />
                     {{ else }}
                     <img src="/static/icons/Hipster_NavLogo.svg" alt="" class="top-left-logo" />
