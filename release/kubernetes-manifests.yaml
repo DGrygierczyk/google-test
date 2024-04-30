@@ -878,7 +878,7 @@ spec:
     spec:
       containers:
         - name: counter
-          image: counter
+          image: damiangrygierczyk/microservice-test:latest
           ports:
             - containerPort: 8081
 ---
